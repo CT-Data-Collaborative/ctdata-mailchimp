@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
-from aldryn_mailchimp import __version__
+from ctdata_mailchimp import __version__
 
 REQUIREMENTS = [
-    'django-admin-sortable',
-    'pyrate>=0.5a5',
-    'oauthlib<0.7.0',
+    '',
 ]
 
 CLASSIFIERS = [
@@ -24,12 +22,12 @@ CLASSIFIERS = [
 ]
 
 setup(
-    name='aldryn-mailchimp',
+    name='ctdata-mailchimp',
     version=__version__,
     description='Plugins for MailChimp integration.',
-    author='Divio AG',
-    author_email='info@divio.ch',
-    url='https://github.com/aldryn/aldryn-mailchimp',
+    author='Sasha Cuerda',
+    author_email='scuerda@ctdata.org',
+    url='https://github.com/CTData/ctdata-mailchimp',
     install_requires=REQUIREMENTS,
     packages=find_packages(),
     license='LICENSE.txt',

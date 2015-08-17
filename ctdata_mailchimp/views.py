@@ -6,38 +6,41 @@ from django.shortcuts import redirect, get_object_or_404
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.generic import FormView, DetailView
 
-from pyrate.services import mailchimp
+from mailchimp.api import MailChimpAPI
 
 from .utils import get_language_for_code
 from .forms import SubscriptionPluginForm
-from .models import SubscriptionPlugin, Campaign
+from .models import SubscriptionPlugin
 
 
 ERROR_MESSAGES = {
     104: _('Invalid API-Key'),
     200: _('The selected list does not exist.'),
-    214: _('You are already subscribed to our list.'),
-    230: _('You are already subscribed to our list.'),
+    314: _('You are already subscribed to our list.'),
+    330: _('You are already subscribed but you have not yet confirmed via the email.'),
+    414: _('That email is not registered with us.'),
+    430: _('That email has already been unsubscribed.'),
 }
-
 
 class SubscriptionView(FormView):
 
     form_class = SubscriptionPluginForm
-    template_name = 'aldryn_mailchimp/subscription.html'
+    template_name = 'ctdata_mailchimp/subscription.html'
 
     def form_valid(self, form):
-        h = mailchimp.MailchimpPyrate(settings.MAILCHIMP_API_KEY)
+        h = MailChimpAPI(settings.MAILCHIMP_API_KEY)
         plugin = get_object_or_404(SubscriptionPlugin, pk=form.cleaned_data['plugin_id'])
 
-        merge_vars = None
-        if plugin.assign_language:
-            language = get_language_for_code(self.request.LANGUAGE_CODE)
-            if language:
-                merge_vars = {'mc_language': language}
+        # merge_vars = None
+        # if plugin.assign_language:
+        #     language = get_language_for_code(self.request.LANGUAGE_CODE)
+        #     if language:
+        #         merge_vars = {'mc_language': language}
 
         try:
-            h.subscribe_to_list(list_id=plugin.list_id, user_email=form.cleaned_data['email'], merge_vars=merge_vars)
+            h.subscribeList(list_name=plugin.list_name, user_email=form.cleaned_data['email'],\
+             first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'])
+
         except Exception as exc:
             try:
                 message = ERROR_MESSAGES[exc.code]
@@ -63,18 +66,3 @@ class SubscriptionView(FormView):
             # user has tampered with the redirect_url field.
             response = HttpResponseBadRequest()
         return response
-
-
-class CampaignDetail(DetailView):
-    model = Campaign
-
-    @property
-    def template_name_suffix(self):
-        default = '_detail'
-        iframe = '_detail_iframe'
-        return iframe if 'iframe' in self.request.GET else default
-
-    def get_queryset(self):
-        return self.model.objects.published()
-
-campaign_detail = CampaignDetail.as_view()
