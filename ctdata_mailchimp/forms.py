@@ -30,6 +30,12 @@ class UnsubscribePluginForm(forms.Form):
         super(UnsubscribePluginForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.form_class = 'mailchimp-subscription-form'
+        self.helper.form_class = 'mailchimp-subscription-form form-horizontal'
+        self.helper.label_class = 'col-lg-2'
+        self.helper.field_class = 'col-lg-8'
         self.helper.add_input(Submit('submit', 'Submit')) 
         self.helper.form_action = "admin:ctdata-mailchimp-unsubscribe"
+        self.helper.layout = Layout(
+                'email',
+                StrictButton('Subscribe', css_class='btn-default')
+                )
