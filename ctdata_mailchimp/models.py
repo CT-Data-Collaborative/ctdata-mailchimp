@@ -4,9 +4,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models.pluginmodel import CMSPlugin
-from adminsortable.models import Sortable
-from adminsortable.fields import SortableForeignKey
-
 
 
 class SubscriptionPlugin(CMSPlugin):
