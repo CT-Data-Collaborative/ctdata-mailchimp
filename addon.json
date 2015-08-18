@@ -1,16 +1,14 @@
 {
-    "name": "Aldryn Mailchimp",
+    "name": "CTData Mailchimp",
     "description": "Plugin for MailChimp integration.",
-    "url": "https://github.com/aldryn/aldryn-mailchimp",
-    "package-name": "aldryn-mailchimp",
+    "url": "https://github.com/CT-Data-Collaborative/ctdata-mailchimp",
+    "package-name": "ctdata-mailchimp",
     "installed-apps": [
-        "adminsortable",
-        "pyrate",
         "aldryn_mailchimp"
     ],
     "author": {
-        "name": "Divio AG",
-        "url": "https://www.divio.ch"
+        "name": "CT Data"
+        "url": "https://www.ctdata.org"
     },
     "license": {
         "name": "BSD",

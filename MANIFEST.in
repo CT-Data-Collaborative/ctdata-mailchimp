@@ -1,5 +1,5 @@
 include LICENSE.txt
 include README.rst
-recursive-include aldryn_mailchimp/templates *
-recursive-include aldryn_mailchimp/locale *
+recursive-include ctdata_mailchimp/templates *
+recursive-include ctdata_mailchimp/locale *
 recursive-exclude * *.pyc
