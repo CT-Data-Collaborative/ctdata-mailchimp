@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from .views import SubscriptionView
+from .views import SubscriptionView, UnsubscribeView
 from .models import SubscriptionPlugin
 from .forms import SubscriptionPluginForm
 

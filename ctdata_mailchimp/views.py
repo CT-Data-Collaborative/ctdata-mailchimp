@@ -67,6 +67,7 @@ class SubscriptionView(FormView):
             response = HttpResponseBadRequest()
         return response
 
+
 class UnsubscribeView(FormView):
 
     form_class = UnsubscribePluginForm
