@@ -8,7 +8,7 @@ from cms.plugin_pool import plugin_pool
 
 from .views import SubscriptionView, UnsubscribeView
 from .models import SubscriptionPlugin
-from .forms import SubscriptionPluginForm
+from .forms import SubscriptionPluginForm, UnsubscribePluginForm
 
 
 class SubscriptionCMSPlugin(CMSPluginBase):
