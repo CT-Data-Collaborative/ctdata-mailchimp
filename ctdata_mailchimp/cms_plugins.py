@@ -50,7 +50,7 @@ class UnsubscribeCMSPlugin(CMSPluginBase):
         return context
 
     def get_unsubscribe_view(self):
-        return UnsubscribleView.as_view()
+        return UnsubscribeView.as_view()
 
     def get_plugin_urls(self):
         unsubscribe_view = self.get_unsubscribe_view()
