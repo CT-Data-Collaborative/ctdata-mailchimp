@@ -22,6 +22,13 @@ class SubscriptionPluginForm(forms.Form):
         self.helper.form_action = "admin:ctdata-mailchimp-subscribe" 
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-8'
+        self.helper.layout = Layout(
+                Fieldset(
+                    'first_name',
+                    'last_name',
+                    'email'
+                    )
+                )
 
 class UnsubscribePluginForm(forms.Form):
     email = forms.EmailField(max_length=100, label=_('E-mail'))
@@ -37,3 +44,8 @@ class UnsubscribePluginForm(forms.Form):
         self.helper.field_class = 'col-lg-8'
         self.helper.add_input(Submit('submit', 'Submit')) 
         self.helper.form_action = "admin:ctdata-mailchimp-unsubscribe"
+        self.helper.layout = Layout(
+                Fieldset(
+                    'email'
+                    )
+                )
