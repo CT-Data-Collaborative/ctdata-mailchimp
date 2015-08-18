@@ -1,0 +1,7 @@
+{% load i18n %}
+
+<form class="mailchimp-subscription-form" action="{% url 'admin:ctdata-mailchimp-unsubscribe' %}" method="POST">
+	{% csrf_token %}
+	{{ form.as_ul }}
+	<input type="submit" value="{% trans 'Unsubscribe' %}"/>
+</form>

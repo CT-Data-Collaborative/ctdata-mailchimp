@@ -9,3 +9,8 @@ class SubscriptionPluginForm(forms.Form):
     last_name = forms.CharField(label=_('Last Name'))
     plugin_id = forms.CharField(widget=forms.HiddenInput)
     redirect_url = forms.CharField(widget=forms.HiddenInput)
+
+class UnsubscribePluginForm(forms.Form):
+    email = forms.EmailField(max_length=100, label=_('E-mail'))
+    plugin_id = forms.CharField(widget=forms.HiddenInput)
+    redirect_url = forms.CharField(widget=forms.HiddenInput)

@@ -35,3 +35,28 @@ class SubscriptionCMSPlugin(CMSPluginBase):
         )
 
 plugin_pool.register_plugin(SubscriptionCMSPlugin)
+
+class UnsubscribeCMSPlugin(CMSPluginBase):
+    cache = False
+    render_template = 'ctdata_mailchimp/snippets/_unsubscribe.html'
+    name = _('Unsubscribe')
+    model = SubscriptionPlugin
+    module = _('MailChimpSubscribe')
+
+    def render(self, context, instance, placeholder):
+        request = context['request']
+        context['form'] = UnsubscribePluginForm(initial={'plugin_id': instance.pk,
+                                                          'redirect_url': request.get_full_path()})
+        return context
+
+    def get_unsubscribe_view(self):
+        return UnsubscribleView.as_view()
+
+    def get_plugin_urls(self):
+        unsubscribe_view = self.get_unsubscribe_view()
+
+        return patterns('',
+            url(r'^unsubscribe/$', never_cache(unsubscribe_view), name='ctdata-mailchimp-unsubscribe'),
+        )
+
+plugin_pool.register_plugin(UnsubscribeCMSPlugin)
