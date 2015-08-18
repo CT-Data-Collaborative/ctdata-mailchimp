@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 from ctdata_mailchimp import __version__
 
 REQUIREMENTS = [
-    'django_crispy_form',
+    '',
 ]
 
 CLASSIFIERS = [
