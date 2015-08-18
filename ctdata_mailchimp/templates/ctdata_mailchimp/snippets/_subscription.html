@@ -1,13 +1,3 @@
 {% load i18n crispy_forms_tags %}
 
-<h3>Signup for our e-newsletter</h3>
-
-<p>Stay up-to-date with what's happening in open data around the state.</p>
-
 {% crispy form form.helper %}
-
-<!-- <form class="mailchimp-subscription-form" action="{% url 'admin:ctdata-mailchimp-subscribe' %}" method="POST"> -->
-<!-- 	{% csrf_token %} -->
-<!-- 	{{ form|crispy }} -->
-<!-- 	<input type="submit" value="{% trans 'Subscribe' %}"/> -->
-<!-- </form> -->

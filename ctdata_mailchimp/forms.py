@@ -37,10 +37,3 @@ class UnsubscribePluginForm(forms.Form):
         self.helper.field_class = 'col-lg-8'
         self.helper.add_input(Submit('submit', 'Submit')) 
         self.helper.form_action = "admin:ctdata-mailchimp-unsubscribe"
-        self.helper.layout = Layout(
-                Fieldset(
-                    'Let us know why you unsubscribed',
-                    'email',
-                     HTML("""<p>Test layout html placement and structure</p>""")
-                     )
-                )
