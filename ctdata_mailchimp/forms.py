@@ -19,9 +19,17 @@ class SubscriptionPluginForm(forms.Form):
         self.helper.form_method = 'post'
         self.helper.form_class = 'mailchimp-subscription-form'
         self.helper.add_input(Submit('submit', 'Submit')) 
-        self.helper.form_action = "{% url 'admin:ctdata-mailchimp-subscribe' %}"
+        self.helper.form_action = "admin:ctdata-mailchimp-subscribe"
 
 class UnsubscribePluginForm(forms.Form):
     email = forms.EmailField(max_length=100, label=_('E-mail'))
     plugin_id = forms.CharField(widget=forms.HiddenInput)
     redirect_url = forms.CharField(widget=forms.HiddenInput)
+
+    def __init__(self, *args, **kwargs):
+        super(UnsubscribePluginForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.form_class = 'mailchimp-subscription-form'
+        self.helper.add_input(Submit('submit', 'Submit')) 
+        self.helper.form_action = "admin:ctdata-mailchimp-unsubscribe"
